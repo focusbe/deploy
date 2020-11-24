@@ -39,7 +39,7 @@ try {
         console.log(error, stdout, stderr);
       });
     });
-    exec(`rsync --password-file=rsync.pass ./build ${username}@${ip}::${projectPath}`, function (error, stdout, stderr) {
+    exec(`rsync --password-file=rsync.pass ./dist ${username}@${ip}::${projectPath}`, function (error, stdout, stderr) {
       // 获取命令执行的输出
       console.log(error, stdout, stderr);
     });
