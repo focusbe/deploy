@@ -37,6 +37,8 @@ try {
           if (error) {
             return console.error(error);
           }
+          var data = fs.readFileSync('rsync.pass');
+          console.log("同步读取: " + data.toString());
           console.log("数据写入成功！");
           exec("chmod 600 rsync.pass", function (error, stdout, stderr) {
             if (error) {
@@ -44,7 +46,7 @@ try {
             }
             // 获取命令执行的输出
             // console.log(error, stdout, stderr);
-            exec(`rsync --password-file=rsync.pass ./dist ${username}@${ip}::${projectPath}`, function (error, stdout, stderr) {
+            exec(`rsync -av --password-file=rsync.pass ./dist/ ${username}@${ip}::${projectPath}`, function (error, stdout, stderr) {
               if (error) {
                 return console.error(error);
               }
