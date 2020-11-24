@@ -10,7 +10,7 @@ try {
   const deployType = core.getInput("deploy-type");
   const ip = core.getInput("ip");
   const username = core.getInput("username");
-  const password = core.getInput("username");
+  const password = core.getInput("password");
   const projectPath = core.getInput("project-path");
   if (!projectType || !deployType) {
     console.log("请传入project-type,project-type");
