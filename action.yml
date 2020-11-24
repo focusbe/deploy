@@ -25,6 +25,10 @@ inputs:
     descrition: 'project path'
     required: true
     default: ''
+  output: 
+    descrition: 'web front dist path'
+    required: true
+    default: 'dist'
 outputs:
   res: 
     description: 'result msg'
