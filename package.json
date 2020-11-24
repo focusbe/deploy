@@ -1,63 +1,24 @@
 {
-	"name": "sns",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"serve": "vue-cli-service serve --open",
-		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint",
-		"w1": "npm run build && node ./shell/deploy-w1.js",
-		"deploy-dev": "cross-env NODE_ENV=dev npm run build && deployator deploy  --environment dev",
-		"deploy-test": "cross-env NODE_ENV=test npm run build && deployator deploy  --environment test"
-	},
-	"dependencies": {
-		"core-js": "^3.6.5",
-		"cube-ui": "~1.12.15",
-		"dayjs": "^1.8.31",
-		"fastscan": "^1.0.6",
-		"js-base64": "^3.4.4",
-		"store": "^2.0.12",
-		"stylus": "^0.54.7",
-		"universal-cookie": "^4.0.3",
-		"vant": "^2.8.6",
-		"vue": "^2.6.11",
-		"vue-router": "^3.2.0",
-		"vuex": "^3.4.0"
-	},
-	"devDependencies": {
-		"@vue/cli-plugin-babel": "^4.4.1",
-		"@vue/cli-plugin-eslint": "^4.4.1",
-		"@vue/cli-service": "^4.4.1",
-		"Base64": "^1.1.0",
-		"axios": "^0.19.2",
-		"babel-eslint": "^10.1.0",
-		"babel-plugin-import": "^1.13.0",
-		"cross-env": "^7.0.2",
-		"cube-ui": "^1.12.43",
-		"deployator": "^2.0.0",
-		"emoji-mart-vue": "^2.6.6",
-		"emojicharstring": "^0.1.2",
-		"eslint": "^6.7.2",
-		"eslint-plugin-vue": "^6.2.2",
-		"fastclick": "^1.0.6",
-		"fs-extra": "^9.0.1",
-		"js-md5": "^0.7.3",
-		"less-loader": "^6.1.1",
-		"mescroll.js": "^1.4.2",
-		"mta-h5-analysis": "^2.0.17",
-		"postcss-loader": "^3.0.0",
-		"stylus": "^0.54.5",
-		"stylus-loader": "^3.0.2",
-		"vconsole": "^3.3.4",
-		"vue-cli-plugin-cube-ui": "^0.2.5",
-		"vue-template-compiler": "^2.6.11",
-		"vue2-touch-events": "^2.2.1",
-		"ztgamejs": "^0.0.32"
-	},
-	"transformModules": {
-		"cube-ui": {
-			"transform": "cube-ui/src/modules/${member}",
-			"kebabCase": true
-		}
-	}
+  "name": "deploy-action",
+  "version": "1.0.0",
+  "description": "部署代码到服务器的 github action",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/focusbe/deploy-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/focusbe/deploy-action/issues"
+  },
+  "homepage": "https://github.com/focusbe/deploy-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
 }
