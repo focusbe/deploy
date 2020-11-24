@@ -1,13 +1,33 @@
 name: 'focusbe deplay action'
 description: 'deplay web-front/php/nodejs/npm tools'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  project-type: 
+    description: 'type of project ,web-static|web-build|npm|php'
     required: true
-    default: 'World'
+    default: ''
+  deploy-type: 
+    descrition: 'type of deploy ,rsync|ssh|ftp'
+    required: true
+    default: ''
+  ip: 
+    descrition: 'server ip'
+    required: true
+    default: ''
+  username: 
+    descrition: 'server username'
+    required: true
+    default: ''
+  password: 
+    descrition: 'password of username'
+    required: true
+    default: ''
+  project-path: 
+    descrition: 'project path'
+    required: true
+    default: ''
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  res: 
+    description: 'result msg'
 runs:
   using: 'node12'
   main: 'index.js'
