@@ -23,25 +23,25 @@ try {
   if (projectType == "web-build") {
     exec("yarn install", function (error, stdout, stderr) {
       // 获取命令执行的输出
-      console.log(error, stdout, stderr);
-    });
-    exec("yarn build", function (error, stdout, stderr) {
-      // 获取命令执行的输出
-      console.log(error, stdout, stderr);
-    });
-    fs.writeFile("rsync.pass", password, function (err) {
-      if (err) {
-        return console.error(err);
-      }
-      console.log("数据写入成功！");
-      exec('chmod 600 rsync.pass', function (error, stdout, stderr) {
+      // console.log(error, stdout, stderr);
+      exec("yarn build", function (error, stdout, stderr) {
         // 获取命令执行的输出
-        console.log(error, stdout, stderr);
+        // console.log(error, stdout, stderr);
+        fs.writeFile("rsync.pass", password, function (err) {
+          if (err) {
+            return console.error(err);
+          }
+          console.log("数据写入成功！");
+          exec("chmod 600 rsync.pass", function (error, stdout, stderr) {
+            // 获取命令执行的输出
+            console.log(error, stdout, stderr);
+            exec(`rsync --password-file=rsync.pass ./dist ${username}@${ip}::${projectPath}`, function (error, stdout, stderr) {
+              // 获取命令执行的输出
+              console.log(error, stdout, stderr);
+            });
+          });
+        });
       });
-    });
-    exec(`rsync --password-file=rsync.pass ./dist ${username}@${ip}::${projectPath}`, function (error, stdout, stderr) {
-      // 获取命令执行的输出
-      console.log(error, stdout, stderr);
     });
   }
   // const username = core.getInput('username');
