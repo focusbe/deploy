@@ -34,7 +34,7 @@ async function main(dist) {
     }
     var excludestr = "";
     for (var i in excludeFiles) {
-      excludestr += ` --exclude "${excludeFiles[i]}"`;
+      excludestr += ` --exclude ${excludeFiles[i].replace('/**','')}`;
     }
     //   //纯前端项目非增量同步
     var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
