@@ -34,6 +34,8 @@ async function main(dist) {
     var rsynccmd = `rsync ${deletetag} -av ${passwordstr} --exclude ".*" --exclude rsync.pass --exclude "node_modules" ./${dist} ${username}@${ip}${maohao}${remotedir}`;
     await Utli.runSh(rsynccmd);
   } else if (deployType == "ftp") {
+    console.log(process.env);
+    fs.writeFileSync("../rsync.pass", password);
     var config = {
       user: username,
       password: password,
@@ -42,7 +44,7 @@ async function main(dist) {
       localRoot: "./" + dist,
       include: ["*", "**/*"],
       remoteRoot: remotedir,
-      exclude: [".*", ".*/*", , "node_modules/*"],
+      exclude: [".git", ".github/*", "node_modules/*"],
     };
     console.log(config);
     await new ftpDeploy().deploy(config);
