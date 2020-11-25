@@ -19,7 +19,10 @@
   "homepage": "https://github.com/focusbe/deploy-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0"
+    "@actions/github": "^4.0.0",
+    "ftp-deploy": "^2.3.8"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@actions/exec": "^1.0.4"
+  }
 }

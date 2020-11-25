@@ -1,5 +1,6 @@
 //部署到服务器
 const core = require("@actions/core");
+const ftpDeploy = require("ftp-deploy");
 const fs = require("fs");
 const Utli = require("./utli");
 const username = core.getInput("username");
@@ -14,18 +15,36 @@ async function main(dist) {
   if (!deployType) {
     throw new Error("deploy-type should not be null");
   }
-  var passwordstr = "";
-  if (deployType == "rsync") {
-    fs.writeFileSync("rsync.pass", password);
-    await Utli.runSh("chmod 600 rsync.pass");
-    passwordstr = "--password-file=rsync.pass";
-  }
-  //   //纯前端项目非增量同步
-  var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
   var remotedir = `${remotePath}/${projectName}`;
-  var maohao = projectType == "rsync" ? "::" : ":";
-  var rsynccmd = `rsync ${deletetag} -av ${passwordstr} --exclude ".*" --exclude "node_modules" ./${dist} ${username}@${ip}${maohao}${remotedir}`;
-  await Utli.runSh(rsynccmd);
+  if (deployType == "rsync" || deployType == "ssh") {
+    var passwordstr = "";
+    var maohao = ":";
+    if (deployType == "rsync") {
+      maohao = "::";
+      fs.writeFileSync("rsync.pass", password);
+      await Utli.runSh("chmod 600 rsync.pass");
+      passwordstr = "--password-file=rsync.pass";
+    } else {
+      fs.writeFileSync("rsync.pass", password);
+      await Utli.runSh("chmod 600 rsync.pass");
+      passwordstr = "-e 'ssh -i rsync.pass -o StrictHostKeyChecking=no'";
+    }
+    //   //纯前端项目非增量同步
+    var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
+    var rsynccmd = `rsync ${deletetag} -av ${passwordstr} --exclude ".*" --exclude rsync.pass --exclude "node_modules" ./${dist} ${username}@${ip}${maohao}${remotedir}`;
+    await Utli.runSh(rsynccmd);
+  } else if (deployType == "ftp") {
+    var config = {
+      user: username,
+      host: ip,
+      port: core.getInput("port"),
+      localRoot: dist,
+      remoteRoot: remotedir,
+      exclude: [".*/*", "node_modules/*"],
+    };
+    await tpDeploy.deploy(config);
+  }
+  console.log(`deploy to ${ip} over ${deployType}`);
 }
 
 module.exports = main;

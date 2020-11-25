@@ -11,7 +11,8 @@ class Utli {
         // reject(data);
       });
       std.on("exit", function (code) {
-        resolve(true);
+        console.log(code);
+        // resolve(true);
         // console.log(sh + "exit at code:" + code);
       });
     });

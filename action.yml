@@ -25,6 +25,10 @@ inputs:
     descrition: 'remote path'
     required: true
     default: ''
+  port: 
+    descrition: 'ftp port'
+    required: true
+    default: '21'
 outputs:
   res: 
     description: 'result msg'
