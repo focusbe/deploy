@@ -14,13 +14,17 @@ async function main(dist) {
   if (!deployType) {
     throw new Error("deploy-type should not be null");
   }
-  fs.writeFileSync("rsync.pass", password);
-  await Utli.runSh("chmod 600 rsync.pass");
+  var passwordstr = "";
+  if (deployType == "rsync") {
+    fs.writeFileSync("rsync.pass", password);
+    await Utli.runSh("chmod 600 rsync.pass");
+    passwordstr = "--password-file=rsync.pass";
+  }
   //   //纯前端项目非增量同步
   var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
   var remotedir = `${remotePath}/${projectName}`;
-  var maohao = projectType=='rsync'?'::':':';
-  var rsynccmd = `rsync ${deletetag} -av --password-file=rsync.pass --exclude ".*" --exclude "node_modules" ./${dist} ${username}@${ip}${maohao}${remotedir}`;
+  var maohao = projectType == "rsync" ? "::" : ":";
+  var rsynccmd = `rsync ${deletetag} -av ${passwordstr} --exclude ".*" --exclude "node_modules" ./${dist} ${username}@${ip}${maohao}${remotedir}`;
   await Utli.runSh(rsynccmd);
 }
 
