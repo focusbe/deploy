@@ -15,7 +15,7 @@ const DeployFun = {
     await Utli.runSh("chmod 600 rsync.pass");
     //纯前端项目非增量同步
     var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
-    await Utli.runSh(`rsync ${deletetag} -av --password-file=rsync.pass ./${dist} ${username}@${ip}::${remotePath}/${projectName}`);
+    await Utli.runSh(`rsync ${deletetag} -av --password-file=rsync.pass --exclude ".*" --exclude "node_modules" ./${dist} ${username}@${ip}::${remotePath}/${projectName}`);
   }
 };
 
