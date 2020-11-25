@@ -8,10 +8,23 @@ const password = core.getInput("password");
 const ip = core.getInput("ip");
 const projectPath = core.getInput("project-path");
 const deployType = core.getInput("deploy-type");
-async function main(dist) {
-  fs.writeFileSync("rsync.pass", password);
-  await Utli.runSh("chmod 600 rsync.pass");
-  console.log(process.env);
-  await Utli.runSh(`rsync -av --password-file=rsync.pass ${dist} ${username}@${ip}::${projectPath}/`);
+
+const DeployFun = {
+  async rsync() {
+    fs.writeFileSync("rsync.pass", password);
+    await Utli.runSh("chmod 600 rsync.pass");
+    await Utli.runSh(`rsync -av --password-file=rsync.pass ./dist/ ${username}@${ip}::${projectPath}/`);
+  },
+};
+
+async function main() {
+  if (!deployType) {
+    throw new Error("deploy-type should not be null");
+  }
+  if (!DeployFun[deployType]) {
+    throw new Error(`deploy-type: ${deployType} is not supported`);
+  }
+  await DeployFun[deployType]();
 }
+
 module.exports = main;

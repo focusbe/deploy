@@ -8,7 +8,7 @@ inputs:
   deploy-type: 
     descrition: 'type of deploy ,rsync|ssh|ftp'
     required: true
-    default: ''
+    default: 'ssh'
   ip: 
     descrition: 'server ip'
     required: true
