@@ -40,6 +40,7 @@ async function main(dist) {
       host: ip,
       port: core.getInput("port"),
       localRoot: dist,
+      include: ["*", "**/*"],
       remoteRoot: remotedir,
       exclude: [".*/*", "node_modules/*"],
     };
