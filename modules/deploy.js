@@ -42,7 +42,7 @@ async function main(dist) {
       remoteRoot: remotedir,
       exclude: [".*/*", "node_modules/*"],
     };
-    await ftpDeploy.deploy(config);
+    await new ftpDeploy().deploy(config);
   }
   console.log(`deploy to ${ip} over ${deployType}`);
 }
