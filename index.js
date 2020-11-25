@@ -4,8 +4,7 @@ const deploy = require("./modules/deploy");
 
 async function main() {
   try {
-    const projectType = core.getInput("project-type");
-    await build(projectType);
+    await build();
     await deploy(projectType.indexOf("build") > -1 ? "dist/" : "");
   } catch (error) {
     core.setFailed(error.message);
