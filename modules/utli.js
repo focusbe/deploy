@@ -8,7 +8,7 @@ class Utli {
       });
       std.stderr.on("data", function (data) {
         console.error(data.trim());
-        reject(data);
+        // reject(data);
       });
       std.on("exit", function (code) {
         resolve(true);

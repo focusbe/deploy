@@ -1,14 +1,14 @@
 name: 'focusbe deplay action'
-description: 'deplay web-front/php/nodejs/npm tools'
+description: 'deplay type'
 inputs:
   project-type: 
-    description: 'type of project ,web-static|web-build|npm|php'
+    description: 'type of project ,front-static|front-build|npm|backend-php|backend-node'
     required: true
-    default: ''
+    default: 'front-build'
   deploy-type: 
-    descrition: 'type of deploy ,rsync|ssh|ftp'
+    descrition: 'type of deploy ,example:rsync|ssh|ftp'
     required: true
-    default: 'ssh'
+    default: 'rsync'
   ip: 
     descrition: 'server ip'
     required: true
@@ -21,14 +21,10 @@ inputs:
     descrition: 'password of username'
     required: true
     default: ''
-  project-path: 
-    descrition: 'project path'
+  remote-path: 
+    descrition: 'remote path'
     required: true
     default: ''
-  output: 
-    descrition: 'web front dist path'
-    required: true
-    default: 'dist'
 outputs:
   res: 
     description: 'result msg'
