@@ -34,9 +34,9 @@ async function main(dist) {
   if (!DeployFun[deployType]) {
     throw new Error(`deploy-type: ${deployType} is not supported`);
   }
-  if (!remotePath) {
-    throw new Error("remote-path should not be null");
-  }
+  // if (!remotePath) {
+  //   throw new Error("remote-path should not be null");
+  // }
   await DeployFun[deployType](dist);
 }
 
