@@ -1,6 +1,7 @@
 //部署到服务器
 const core = require("@actions/core");
 const fs = require("fs");
+const { fileURLToPath } = require("url");
 const Utli = require("./utli");
 const username = core.getInput("username");
 const password = core.getInput("password");
@@ -16,6 +17,13 @@ const DeployFun = {
     //纯前端项目非增量同步
     var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
     await Utli.runSh(`rsync ${deletetag} -av --password-file=rsync.pass --exclude ".*" --exclude "node_modules" ./${dist} ${username}@${ip}::${remotePath}/${projectName}`);
+  },
+  async ftp(){
+    fs.writeFileSync("rsync.pass", password);
+    await Utli.runSh("chmod 600 rsync.pass");
+    //纯前端项目非增量同步
+    var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
+    await Utli.runSh(`rsync ${deletetag} -av --password-file=rsync.pass --exclude ".*" --exclude "node_modules" ./${dist} ${username}@${ip}:${remotePath}/${projectName}`);
   }
 };
 
