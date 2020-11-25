@@ -8,6 +8,7 @@ async function main() {
     await build();
     await deploy(projectType.indexOf("build") > -1 ? "dist/" : "");
   } catch (error) {
+    console.error(error)
     core.setFailed(error.message);
   }
 }
