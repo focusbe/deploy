@@ -1,3 +1,4 @@
+const core = require("@actions/core");
 async function main() {
   const projectType = core.getInput("project-type");
   if(!projectType){
