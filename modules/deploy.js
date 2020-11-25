@@ -39,10 +39,10 @@ async function main(dist) {
       password: password,
       host: ip,
       port: core.getInput("port"),
-      localRoot: "./"+dist,
+      localRoot: "./" + dist,
       include: ["*", "**/*"],
       remoteRoot: remotedir,
-      exclude: [".*", "node_modules/*"],
+      exclude: [".*", ".*/*", , "node_modules/*"],
     };
     console.log(config);
     await new ftpDeploy().deploy(config);
