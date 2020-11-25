@@ -36,6 +36,7 @@ async function main(dist) {
   } else if (deployType == "ftp") {
     var config = {
       user: username,
+      password: password,
       host: ip,
       port: core.getInput("port"),
       localRoot: dist,
