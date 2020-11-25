@@ -7,6 +7,6 @@ var config = {
   localRoot: './test/',
   include: ["*", "**/*"],
   remoteRoot: "/test/",
-  exclude: [".*/*", "node_modules/*"],
+  exclude: [".github/"],
 };
 new ftpDeploy().deploy(config);

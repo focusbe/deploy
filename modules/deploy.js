@@ -10,7 +10,7 @@ const remotePath = core.getInput("remote-path");
 const projectType = core.getInput("project-type");
 const deployType = core.getInput("deploy-type");
 const projectName = process.env.GITHUB_REPOSITORY.split("/").pop();
-const excludeFiles = [".git", ".github", ".vscode", "node_modules"];
+const excludeFiles = [".git/*", ".github//*", ".vscode//*", "node_modules//*"];
 async function main(dist) {
   if (!deployType) {
     throw new Error("deploy-type should not be null");
