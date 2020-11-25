@@ -6,16 +6,19 @@ const Utli = require("./utli");
 const username = core.getInput("username");
 const password = core.getInput("password");
 const ip = core.getInput("ip");
-const remotePath = core.getInput("remote-path");
+var remotePath = core.getInput("remote-path");
 const projectType = core.getInput("project-type");
 const deployType = core.getInput("deploy-type");
 const projectName = process.env.GITHUB_REPOSITORY.split("/").pop();
 const excludeFiles = [".git/**", ".github/**", ".vscode/**", "node_modules/**"];
 async function main(dist) {
+  if (remotePath[remotePath.length - 1] != "/") {
+    remotePath += "/";
+  }
   if (!deployType) {
     throw new Error("deploy-type should not be null");
   }
-  var remotedir = `${remotePath}/${projectName}`;
+  var remotedir = `${remotePath}${projectName}`;
 
   if (deployType == "rsync" || deployType == "ssh") {
     var passwordstr = "";
