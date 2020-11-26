@@ -20,11 +20,9 @@ class Main {
   }
   getConfig() {
     const token = core.getInput("deploy-token");
-    console.log(token);
     if (token) {
       try {
         global.Config = JSON.parse(Base64.decode(token));
-        console.log(global.Config);
       } catch (error) {
         console.error("token parse error you can get token by https://tools.focusbe/com/deploy-tools/");
         return false;

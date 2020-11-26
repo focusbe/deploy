@@ -6,7 +6,7 @@ async function main() {
     var build = require("./" + global.Config["project-type"]);
     await build();
   } else {
-    console.log("无需构建");
+    // console.log("");
   }
 }
 module.exports = main;
