@@ -1,34 +1,38 @@
 name: 'focusbe deplay action'
 description: 'deplay type'
 inputs:
+  deploy-token: 
+    description: 'deploy-token'
+    required: false
+    default: ''
   project-type: 
     description: 'type of project ,front-static|front-build|npm|backend-php|backend-node'
-    required: true
+    required: false
     default: 'front-build'
   deploy-type: 
     descrition: 'type of deploy ,example:rsync|ssh|ftp'
-    required: true
+    required: false
     default: 'rsync'
   ip: 
     descrition: 'server ip'
-    required: true
+    required: false
     default: ''
   username: 
     descrition: 'server username'
-    required: true
+    required: false
     default: ''
   password: 
     descrition: 'password of username'
-    required: true
+    required: false
     default: ''
   remote-path: 
     descrition: 'remote path'
-    required: true
+    required: false
     default: ''
   port: 
-    descrition: 'ftp port'
-    required: true
-    default: '21'
+    descrition: 'ftp|ssh port'
+    required: false
+    default: '22'
 outputs:
   res: 
     description: 'result msg'

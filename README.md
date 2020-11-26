@@ -1,20 +1,59 @@
 # deploy-action
-部署代码到服务器的 github action
+build vue/react/gulp and deploy your project over ssh|rsync|ftp to you server
+
+## you have two choice to deply your project
+
+# Option1
+## step1
+  get a deploy-token by https://tools.focusbe.com/deploy-token
+  
+## step2
+```
+uses: focusbe/deploy@v1
+with:
+  deploy-token: ${{DEPLOY_TOKEN}}
+```
+  
+# Option2
 
 ## Inputs
 
-### `who-to-greet`
+### `deploy-type`
 
-**必填** 要问候的人员的姓名。 默认值为 `"World"`。
+**requied** you can use ssh|rsync|ftp. Default `"rsync"`.
 
-## Outputs
 
-### `time`
+### `project-type`
+**requied** you can use front-static|front-build|backend-php|backend-node。 Default `"front-build"`.
+### `ip`
+**requied** you server ip.
 
-我们问候您的时间。
+### `username`
+**requied** you server username.
 
-## Example usage
+### `password`
+**requied** you server password.
 
-uses: actions/hello-world-javascript-action@v1.1
+### `remote-path`
+**requied** the path of you project on your server.
+
+### `port
+**options** when you deploy-type is `"ssh"`|`"ftp"`,you need input port.Default `22`.
+
+### Example
+```
+uses: focusbe/deploy@v1
 with:
-  who-to-greet: 'Mona the Octocat'
+  deploy-type: ftp,
+  project-type: front-static,
+  ip: **.**.**.**,
+  port: 21,
+  username: ${{Username}},
+  password: ${{Password}},
+  remote-path: /var/www/html
+```
+
+**Do not input password or token in .yml file,you can save it in github->project->setting->secrets,and use it by ${{secrets.SomeThing}}**
+
+
+
