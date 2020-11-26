@@ -1,17 +1,16 @@
 //部署到服务器
-const core = require("@actions/core");
 const ftpDeploy = require("ftp-deploy");
 const fs = require("fs");
 const Utli = require("./utli");
-const username = global.Config.username;
-const password = global.Config.password;
-const ip = global.Config.ip;
-var remotePath = global.Config['remote-path'];
-const projectType = global.Config['project-type'];
-const deployType = global.Config['deploy-type'];
-const projectName = process.env.GITHUB_REPOSITORY.split("/").pop();
 const excludeFiles = [".git/**", ".github/**", ".vscode/**", "node_modules/**"];
 async function main(dist) {
+  const username = global.Config.username;
+  const password = global.Config.password;
+  const ip = global.Config.ip;
+  var remotePath = global.Config["remote-path"];
+  const projectType = global.Config["project-type"];
+  const deployType = global.Config["deploy-type"];
+  const projectName = process.env.GITHUB_REPOSITORY.split("/").pop();
   if (remotePath[remotePath.length - 1] != "/") {
     remotePath += "/";
   }
