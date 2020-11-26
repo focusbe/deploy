@@ -4,7 +4,10 @@ const deploy = require("./modules/deploy");
 const Base64 = require("js-base64");
 global.Config = {};
 class Main {
-  async constructor() {
+  constructor() {
+    this.init();
+  }
+  async init() {
     try {
       if (this.getConfig()) {
         await build();

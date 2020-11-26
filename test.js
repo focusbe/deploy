@@ -10,12 +10,4 @@
 //   exclude: [".github/"],
 // };
 // new ftpDeploy().deploy(config);
-const Base64 = require("js-base64");
-var arr = {
-  a: 1,
-  b: 2,
-  c: 3,
-};
 
-console.log(Base64.encode(JSON.stringify(arr)));
-console.log(JSON.parse(Base64.decode("eyJhIjoxLCJiIjoyLCJjIjozfQ==")));
