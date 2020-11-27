@@ -22,6 +22,8 @@ with:
 
 **requied** you can use ssh|rsync|ftp. Default `"rsync"`.
 
+### `project-name`
+**optional** you can use front-static|front-build|backend-php|backend-node。 Default github reposity name.
 
 ### `project-type`
 **requied** you can use front-static|front-build|backend-php|backend-node。 Default `"front-build"`.
@@ -32,13 +34,13 @@ with:
 **requied** you server username.
 
 ### `password`
-**requied** you server password.
+**optional** you server password.
 
 ### `remote-path`
-**requied** the path of you project on your server.
+**optional** the path of you project on your server.
 
-### `port
-**options** when you deploy-type is `"ssh"`|`"ftp"`,you need input port.Default `22`.
+### `port`
+**optional** when you deploy-type is `"ssh"`|`"ftp"`,you need input port.Default `22`.
 
 ### Example
 ```
