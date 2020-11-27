@@ -9,7 +9,7 @@ build vue/react/gulp and deploy your project over ssh|rsync|ftp to you server
   
 ## step2
 ```
-uses: focusbe/deploy@v1
+uses: focusbe/deploy-action@v1
 with:
   deploy-token: ${{DEPLOY_TOKEN}}
 ```
