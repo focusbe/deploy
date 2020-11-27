@@ -1,7 +1,7 @@
 name: 'focusbe deplay action'
 description: 'deplay type'
-color: Blue
-icon: cloud
+color: "blue"
+icon: "upload-cloud"
 inputs:
   project-name: 
     description: 'deploy name'
