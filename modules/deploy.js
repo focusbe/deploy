@@ -10,7 +10,7 @@ async function main(dist) {
   var remotePath = global.Config["remote-path"];
   const projectType = global.Config["project-type"];
   const deployType = global.Config["deploy-type"];
-  const projectName = process.env.GITHUB_REPOSITORY.split("/").pop();
+  const projectName = global.Config["project-name"] || process.env.GITHUB_REPOSITORY.split("/").pop();
   if (remotePath[remotePath.length - 1] != "/") {
     remotePath += "/";
   }

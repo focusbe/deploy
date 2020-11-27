@@ -28,7 +28,7 @@ class Main {
         return false;
       }
     } else {
-      ["deploy-type", "project-type", "username", "password", "ip", "remote-path", "port"].map((item, key) => {
+      ["deploy-type", "project-type", "username", "password", "ip", "remote-path", "port","project-name"].map((item, key) => {
         global.Config[item] = core.getInput(item);
       });
     }

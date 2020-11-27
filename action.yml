@@ -1,8 +1,12 @@
 name: 'focusbe deplay action'
 description: 'deplay type'
 inputs:
+  project-name: 
+    description: 'deploy name'
+    required: false
+    default: ''
   deploy-token: 
-    description: 'deploy-token'
+    description: 'deploy token ,you can get it by https://tools.focusbe.com/deploy-token'
     required: false
     default: ''
   project-type: 
