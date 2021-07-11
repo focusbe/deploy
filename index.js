@@ -24,7 +24,7 @@ class Main {
       try {
         global.Config = JSON.parse(Base64.decode(token));
       } catch (error) {
-        console.error("token parse error you can get token by https://tools.focusbe/com/deploy-tools/");
+        console.error("token parse error you can get token by https://tools.focusbe.com/deploy-token");
         return false;
       }
     } else {
