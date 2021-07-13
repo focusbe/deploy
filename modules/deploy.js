@@ -31,8 +31,7 @@ async function main(dist) {
     for (var i in excludeFiles) {
       excludestr += ` --exclude ${excludeFiles[i].replace("/**", "")}`;
     }
-    //   //纯前端项目非增量同步
-    var deletetag = projectType.indexOf("front-") == 0 ? "--delete" : "";
+    var deletetag = "";
     var rsynccmd = `rsync ${deletetag} -av ${passwordstr} ${excludestr} ./${dist} ${username}@${ip}${maohao}${remotedir}`;
     await Utli.runSh(rsynccmd);
   } else if (deployType == "ftp") {
