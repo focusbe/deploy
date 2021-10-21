@@ -35,7 +35,7 @@ async function main(dist) {
         }
         var deletetag = '';
         const sourceDir = global.Config['source-path'];
-        var rsynccmd = `rsync ${global.Config.args} ${passwordstr} ${global.Config.exclude} ./${sourceDir} ${username}@${ip}${maohao}${remotedir}`;
+        var rsynccmd = `rsync ${global.Config.args} ${passwordstr} ${global.Config.exclude} ${sourceDir} ${username}@${ip}${maohao}${remotedir}`;
         await Utli.runSh(rsynccmd);
     } else if (deployType == 'ftp') {
         var config = {
