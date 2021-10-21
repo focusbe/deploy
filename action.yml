@@ -40,6 +40,18 @@ inputs:
     descrition: 'ftp|ssh port'
     required: false
     default: '22'
+  source-path: 
+    descrition: ''
+    required: false
+    default: ''
+  exclude: 
+    descrition: ''
+    required: false
+    default: ''
+  args: 
+    descrition: ''
+    required: false
+    default: '-av'
 outputs:
   res: 
     description: 'result msg'
