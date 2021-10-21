@@ -16,7 +16,7 @@ async function main(dist) {
     if (remotePath[remotePath.length - 1] != '/') {
         remotePath += '/';
     }
-    var remotedir = `${remotePath}${projectName}`;
+    var remotedir = `${remotePath}`;
     if (deployType == 'rsync' || deployType == 'ssh') {
         var passwordstr = '';
         var maohao = ':';
@@ -35,7 +35,7 @@ async function main(dist) {
         }
         var deletetag = '';
         const sourceDir = global.Config['source-path'];
-        var rsynccmd = `rsync ${global.Config.args} ${passwordstr} ${global.Config.exclude} ${sourceDir} ${username}@${ip}${maohao}${remotedir}`;
+        var rsynccmd = `rsync ${global.Config.args} ${passwordstr} --exclude ${global.Config.exclude} ./${sourceDir} ${username}@${ip}${maohao}${remotedir}`;
         await Utli.runSh(rsynccmd);
     } else if (deployType == 'ftp') {
         var config = {
