@@ -33,9 +33,11 @@ async function main(dist) {
         for (var i in excludeFiles) {
             excludestr += ` --exclude ${excludeFiles[i].replace('/**', '')}`;
         }
-        var deletetag = '';
+        // var deletetag = '';
         const sourceDir = global.Config['source-path'];
-        var rsynccmd = `rsync ${global.Config.args} ${passwordstr} ${global.Config.exclude} ${sourceDir} ${username}@${ip}${maohao}${remotedir}`;
+        var rsynccmd = `rsync ${global.Config.args} ${passwordstr} ${
+            global.Config.exclude || excludeFiles
+        } ${sourceDir || dist} ${username}@${ip}${maohao}${remotedir}`;
         await Utli.runSh(rsynccmd);
     } else if (deployType == 'ftp') {
         var config = {
