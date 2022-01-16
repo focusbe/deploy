@@ -8,14 +8,18 @@ class Main {
         this.init();
     }
     async init() {
+        Config = global.Config;
+        const projectType = Config['project-type'];
+        const sourcePath = Config['sourcePath-type'];
+        const distPath = sourcePath
+            ? sourcePath
+            : projectType.indexOf('-build') > -1
+            ? 'dist/'
+            : '';
         try {
             if (this.getConfig()) {
                 await build();
-                await deploy(
-                    global.Config['project-type'].indexOf('build') > -1
-                        ? 'dist/'
-                        : ''
-                );
+                await deploy(distPath);
             }
         } catch (error) {
             console.error(error);
