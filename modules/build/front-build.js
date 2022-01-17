@@ -1,7 +1,7 @@
 //前端代码打包
-const Utli = require("../util");
+const Util = require("../util");
 async function main(){
-  await Utli.runSh('npm install');
-  await Utli.runSh('npm run build');
+  await Util.runSh('npm install');
+  await Util.runSh('npm run build');
 }
 module.exports = main;
