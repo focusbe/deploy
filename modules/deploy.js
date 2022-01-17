@@ -55,7 +55,7 @@ async function main(dist) {
         const sourceDir = global.Config['source-path'];
         var rsyncCmd = `rsync ${args} ${passwordStr} ${
             exclude || defaultExcludeStr
-        } ${sourceDir || dist} ${username}@${ip}${colon}${remoteDir}`;
+        } ${sourceDir || dist + '*'} ${username}@${ip}${colon}${remoteDir}`;
         await Util.runSh(rsyncCmd);
     } else if (deployType == 'ftp') {
         var config = {
