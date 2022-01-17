@@ -8,24 +8,24 @@ const defaultExcludeFiles = [
     '.vscode/**',
     'node_modules/**',
 ];
-const Config = global.Config;
 
 async function main(dist) {
+    const Config = global.Config;
     var {
-        username,
-        password,
-        ip,
-        ['rotate-path']: remotePath,
-        ['deploy-type']: deployType,
-        ['project-name']: projectName,
-        exclude,
-        args,
+        username = '',
+        password = '',
+        ip = '',
+        ['remote-path']: remotePath = '',
+        ['deploy-type']: deployType = '',
+        ['project-name']: projectName = '',
+        exclude = '',
+        args = '',
     } = Config;
 
-    if (projectName) {
-        projectName = process.env.GITHUB_REPOSITORY.split('/').pop();
+    if (!projectName) {
+        projectName = process.env.GITHUB_REPOSITORY || ''.split('/').pop();
     }
-
+    console.log(Config);
     if (remotePath[remotePath.length - 1] != '/') {
         remotePath += '/';
     }
