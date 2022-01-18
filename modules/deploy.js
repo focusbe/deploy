@@ -25,7 +25,6 @@ async function main(dist) {
     if (!projectName) {
         projectName = process.env.GITHUB_REPOSITORY || ''.split('/').pop();
     }
-    console.log(Config);
     if (remotePath[remotePath.length - 1] != '/') {
         remotePath += '/';
     }
@@ -35,7 +34,7 @@ async function main(dist) {
     if (deployType === 'rsync' || deployType === 'ssh') {
         var passwordStr = '';
         var colon = ':';
-        var pswFilePath = '../rsync.pass';
+        var pswFilePath = './rsync.pass';
         fs.writeFileSync(pswFilePath, password);
         await Util.runSh('chmod 600 ' + pswFilePath);
         if (deployType == 'rsync') {
@@ -55,7 +54,9 @@ async function main(dist) {
         const sourceDir = global.Config['source-path'];
         var rsyncCmd = `rsync ${args} ${passwordStr} ${
             exclude || defaultExcludeStr
-        } ${sourceDir || dist + '*'} ${username}@${ip}${colon}${remoteDir}`;
+        } --exclude rsync.pass ${
+            sourceDir || dist + '*'
+        } ${username}@${ip}${colon}${remoteDir}`;
         await Util.runSh(rsyncCmd);
     } else if (deployType == 'ftp') {
         var config = {
@@ -70,7 +71,7 @@ async function main(dist) {
         };
         await new ftpDeploy().deploy(config);
     }
-    console.log(`deploy to ${ip} over ${deployType} fineshed`);
+    console.log(` deploy to ${ip} over ${deployType} fineshed `);
 }
 
 module.exports = main;

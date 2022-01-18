@@ -1,18 +1,15 @@
 var exec = require('child_process').exec;
 class Util {
-    static async runSh(sh) {
+    static async runSh(sh, config = {}) {
         await new Promise((resolve, reject) => {
-            let std = exec(sh);
-            std.stdout.on('data', function (data) {
-                console.log(data.trim());
-            });
-            std.stderr.on('data', function (data) {
-                console.error(data.trim());
-                // reject(data);
-            });
-            std.on('exit', function (code) {
-                // console.log(code);
-                console.log(sh + 'exit at code:' + code);
+            let std = exec(sh, config, function (error, stdout, stderr) {
+                if (error) {
+                    console.error(error);
+                    reject(error);
+                    return;
+                }
+                stdout && console.log(`${stdout}`);
+                stderr && console.error(` ${stderr}`);
                 resolve(true);
             });
         });
