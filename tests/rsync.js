@@ -1,4 +1,4 @@
 const Main = require('../modules/main.js');
 new Main(
-    
+    'eyJwcm9qZWN0LW5hbWUiOiJkdW95dSIsImRlcGxveS10eXBlIjoicnN5bmMiLCJwcm9qZWN0LXR5cGUiOiJmcm9udC1idWlsZCIsImlwIjoiNDcuOTQuODguMTc5IiwidXNlcm5hbWUiOiJyc3luY3d3dyIsInBhc3N3b3JkIjoibGl1cGVuZzE5OTIiLCJwb3J0IjoiIiwicmVtb3RlLXBhdGgiOiJ3d3cifQ'
 );

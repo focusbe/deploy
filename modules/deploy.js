@@ -29,7 +29,7 @@ async function main(dist) {
         remotePath += '/';
     }
 
-    var remoteDir = `${remotePath}${projectName}`;
+    var remoteDir = `${remotePath}${projectName}/`;
 
     if (deployType === 'rsync' || deployType === 'ssh') {
         var passwordStr = '';
@@ -52,11 +52,12 @@ async function main(dist) {
         }
 
         const sourceDir = global.Config['source-path'];
-        var rsyncCmd = `rsync ${args} ${passwordStr} ${
-            exclude || defaultExcludeStr
-        } --exclude rsync.pass ${
-            sourceDir || dist + '*'
-        } ${username}@${ip}${colon}${remoteDir}`;
+        var rsyncCmd = `rsync ${
+            sourceDir || dist
+        } ${username}@${ip}${colon}${remoteDir} ${
+            args || '-avz'
+        } ${passwordStr} ${exclude || defaultExcludeStr} --exclude rsync.pass`;
+        console.log(rsyncCmd);
         await Util.runSh(rsyncCmd);
     } else if (deployType == 'ftp') {
         var config = {
